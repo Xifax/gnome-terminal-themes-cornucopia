@@ -31,7 +31,8 @@ The whole procedure consists of translating those themes into dconf profiles:
 - updating list of active profiles, including new ones;
 - setting profile variables based on ini file contents.
 
-And, voilà, we've got ourselves gnome terminal with a whole load of themes!
+And voilà, we've got ourselves gnome terminal with a whole load of themes! 
+Probably much more than we originally wanted...
 
 Additional functionality
 ------------------------
