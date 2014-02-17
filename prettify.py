@@ -1,10 +1,13 @@
+#encoding: utf-8
 import uuid
 import ConfigParser
 import os
 
+# init paths and commands
 dconf_path = '/org/gnome/terminal/legacy/profiles:'
-# TODO: get dconf as env variable?
-dconf = 'dconf'
+dconf = os.popen('which dconf').read().strip()
+dconf_write = dconf + ' write'
+dconf_list = dconf + ' list'
 
 def create_profile(theme_name):
     """Create new profile and update profile list"""
@@ -12,11 +15,11 @@ def create_profile(theme_name):
     profile_dir = dconf_path + '/:' + profile_id
 
     # create new profile
-    os.system("dconf write %s/default \"'%s'\"" % (dconf_path, profile_id))
+    os.system("%s %s/default \"'%s'\"" % (dconf_write, dconf_path, profile_id))
 
     # update profile list
     existing_profiles = os.popen(
-        'dconf list /org/gnome/terminal/legacy/profiles:/'
+        '%s /org/gnome/terminal/legacy/profiles:/' % dconf_list
     ).read().split('\n')
 
     # clean-up profile list
@@ -33,12 +36,12 @@ def create_profile(theme_name):
 
     profiles = "','".join(existing_profiles)
     os.system(
-        "dconf write %s/list \"['%s']\"" % (dconf_path, profiles)
+        "%s %s/list \"['%s']\"" % (dconf_write, dconf_path, profiles)
     )
 
     # set visible name
     os.system(
-        "dconf write %s/visible-name \"'%s'\"" % (profile_dir, theme_name)
+        "%s %s/visible-name \"'%s'\"" % (dconf_write, profile_dir, theme_name)
     )
 
     return profile_id
@@ -51,34 +54,34 @@ def write_theme(theme_name, colors):
     # set color palette
     palette = "', '".join(colors['palette'].split(':'))
     os.system(
-        "dconf write %s/:%s/palette \"['%s']\"" %
-        (dconf_path, profile_id, palette)
+        "%s %s/:%s/palette \"['%s']\"" %
+        (dconf_write, dconf_path, profile_id, palette)
     )
 
     # set foreground, background and highlight color
     os.system(
-        "%s write %s/:%s/bold-color \"'%s'\"" %
-        (dconf, dconf_path, profile_id, colors['bold'])
+        "%s %s/:%s/bold-color \"'%s'\"" %
+        (dconf_write, dconf_path, profile_id, colors['bold'])
     )
     os.system(
-        "%s write %s/:%s/background-color \"'%s'\"" %
-        (dconf, dconf_path, profile_id, colors['background'])
+        "%s %s/:%s/background-color \"'%s'\"" %
+        (dconf_write, dconf_path, profile_id, colors['background'])
     )
     os.system(
-        "%s write %s/:%s/foreground-color \"'%s'\"" %
-        (dconf, dconf_path, profile_id, colors['foreground'])
+        "%s %s/:%s/foreground-color \"'%s'\"" %
+        (dconf_write, dconf_path, profile_id, colors['foreground'])
     )
 
     # make sure the profile is set to not use theme colors
     os.system(
-        '%s write %s/:%s/use-theme-colors "false"' %
-        (dconf, dconf_path, profile_id)
+        '%s %s/:%s/use-theme-colors "false"' %
+        (dconf_write, dconf_path, profile_id)
     )
 
     # set highlighted color to be different from foreground color
     os.system(
-        '%s write %s/:%s/bold-color-same-as-fg "false"' %
-        (dconf, dconf_path, profile_id)
+        '%s %s/:%s/bold-color-same-as-fg "false"' %
+        (dconf_write, dconf_path, profile_id)
     )
 
 
@@ -89,10 +92,10 @@ def get_themes(theme_list='themes'):
     config.read(theme_list)
     for section in config.sections():
         theme = {}
-        theme['palette'] = config.get(section, 'palette').strip('"')
-        theme['background'] = config.get(section, 'bg_color').strip('"')
-        theme['foreground'] = config.get(section, 'fg_color').strip('"')
-        theme['bold'] = config.get(section, 'bd_color').strip('"')
+        theme['palette'] = config.get(section, 'palette')
+        theme['background'] = config.get(section, 'bg_color')
+        theme['foreground'] = config.get(section, 'fg_color')
+        theme['bold'] = config.get(section, 'bd_color')
         themes[section] = theme
 
     return themes
