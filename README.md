@@ -9,10 +9,10 @@ dconf, based on ini specifications. Many themes (TODO) included.
 Why
 ---
 
-After a lot of excruciating procedures, the only themes I could install without
-excruciating pains and casual torture was Solarized theme.
-So, let's port some of the existing themes for dconf, ergo, new gnome terminal.
-While we are at it, let's include conversions of various themes from iTerm and
+After much deliberation, the only theme for Gnome3.8 Terminal I could install without
+excruciating pains and casual torture was the infamous Solarized theme.
+So, let's port some of the existing themes for dconf, i.e., new gnome terminal.
+And while we are at it, let's include conversions of various themes from iTerm and
 so on.
 
 Basic idea
