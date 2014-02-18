@@ -41,37 +41,37 @@ fg_color=#F8F8F8F8F2F2
 bg_color=#1E1E1F4528E7
 
 [chalkboard]
-gconftool-2 --set /apps/gnome-terminal/profiles/Default/foreground_color --type string "#D9D9E6E6F2F2"
-gconftool-2 --set /apps/gnome-terminal/profiles/Default/background_color --type string "#292926262F2F"
-gconftool-2 --set /apps/gnome-terminal/profiles/Default/bold_color --type string "#DA336F9A5F53"
-gconftool-2 --set /apps/gnome-terminal/profiles/Default/palette --type string "#000000000000:#C3C373737272:#7272C3C37373:#C2C2C3C37272:#73737272C3C3:#C3C37272C2C2:#7272C2C2C3C3:#D9D9D9D9D9D9:#323232323232:#DBDBAAAAAAAA:#AAAADBDBAAAA:#DADADBDBAAAA:#AAAAAAAADBDB:#DBDBAAAADADA:#AAAADADADBDB:#FFFFFFFFFFFF"
+fg_color=#D9D9E6E6F2F2
+bg_color=#292926262F2F
+bd_color=#DA336F9A5F53
+palette=#000000000000:#C3C373737272:#7272C3C37373:#C2C2C3C37272:#73737272C3C3:#C3C37272C2C2:#7272C2C2C3C3:#D9D9D9D9D9D9:#323232323232:#DBDBAAAAAAAA:#AAAADBDBAAAA:#DADADBDBAAAA:#AAAAAAAADBDB:#DBDBAAAADADA:#AAAADADADBDB:#FFFFFFFFFFFF
 
 [espresso]
-gconftool-2 --set /apps/gnome-terminal/profiles/Default/foreground_color --type string "#FFFFFFFFFFFF"
-gconftool-2 --set /apps/gnome-terminal/profiles/Default/background_color --type string "#323232323232"
-gconftool-2 --set /apps/gnome-terminal/profiles/Default/bold_color --type string "#FFFFFFFFFFFF"
-gconftool-2 --set /apps/gnome-terminal/profiles/Default/palette --type string "#353435343534:#D2D252515251:#A5A5C2C26161:#FFFFC6C66D6D:#6C6C9999BBBB:#D1D19797D9D9:#BEBED6D6FFFF:#EEEEEEEEECEC:#535353535353:#F0F00C0C0C0C:#C2C2E0E07575:#E1E1E4E38B8B:#8A8AB7B7D9D9:#EFEFB5B5F7F7:#DCDCF4F3FFFF:#FFFFFFFFFFFF"
+fg_color=#FFFFFFFFFFFF
+bg_color=#323232323232
+bd_color=#FFFFFFFFFFFF
+palette=#353435343534:#D2D252515251:#A5A5C2C26161:#FFFFC6C66D6D:#6C6C9999BBBB:#D1D19797D9D9:#BEBED6D6FFFF:#EEEEEEEEECEC:#535353535353:#F0F00C0C0C0C:#C2C2E0E07575:#E1E1E4E38B8B:#8A8AB7B7D9D9:#EFEFB5B5F7F7:#DCDCF4F3FFFF:#FFFFFFFFFFFF
 
 [github]
-gconftool-2 --set /apps/gnome-terminal/profiles/Default/foreground_color --type string "#3E3E3E3E3E3E"
-gconftool-2 --set /apps/gnome-terminal/profiles/Default/background_color --type string "#F4F4F4F4F4F4"
-gconftool-2 --set /apps/gnome-terminal/profiles/Default/bold_color --type string "#C9C955550000"
-gconftool-2 --set /apps/gnome-terminal/profiles/Default/palette --type string "#3E3E3E3E3E3E:#97970B0B1616:#070796962A2A:#F8F8EEEEC7C7:#00003E3E8A8A:#E9E946469191:#8989D1D1ECEC:#FFFFFFFFFFFF:#666666666666:#DEDE00000000:#8787D5D5A2A2:#F1F1D0D00707:#2E2E6C6CBABA:#FFFFA2A29F9F:#1C1CFAFAFEFE:#FFFFFFFFFFFF"
+fg_color=#3E3E3E3E3E3E
+bg_color=#F4F4F4F4F4F4
+bd_color=#C9C955550000
+palette=#3E3E3E3E3E3E:#97970B0B1616:#070796962A2A:#F8F8EEEEC7C7:#00003E3E8A8A:#E9E946469191:#8989D1D1ECEC:#FFFFFFFFFFFF:#666666666666:#DEDE00000000:#8787D5D5A2A2:#F1F1D0D00707:#2E2E6C6CBABA:#FFFFA2A29F9F:#1C1CFAFAFEFE:#FFFFFFFFFFFF
 
 [misterioso]
-gconftool-2 --set /apps/gnome-terminal/profiles/Default/foreground_color --type string "#E1E1E1E1E0E0"
-gconftool-2 --set /apps/gnome-terminal/profiles/Default/background_color --type string "#2D2D37374343"
-gconftool-2 --set /apps/gnome-terminal/profiles/Default/bold_color --type string "#000000000000"
-gconftool-2 --set /apps/gnome-terminal/profiles/Default/palette --type string "#000000000000:#FFFF42424242:#7474AFAF6868:#FFFFADAD2929:#33338F8F8686:#94B213C0E6A2:#2323D7D7D7D7:#E1E1E1E1E0E0:#555555555555:#FFFF32324242:#7474CDCD6868:#FFFFB9B92929:#2323D7D7D7D7:#FFFF3737FFFF:#0000EDEDE1E1:#FFFFFFFFFFFF"
+fg_color=#E1E1E1E1E0E0
+bg_color=#2D2D37374343
+bd_color=#000000000000
+palette=#000000000000:#FFFF42424242:#7474AFAF6868:#FFFFADAD2929:#33338F8F8686:#94B213C0E6A2:#2323D7D7D7D7:#E1E1E1E1E0E0:#555555555555:#FFFF32324242:#7474CDCD6868:#FFFFB9B92929:#2323D7D7D7D7:#FFFF3737FFFF:#0000EDEDE1E1:#FFFFFFFFFFFF
 
 [monokai-soda]
-gconftool-2 --set /apps/gnome-terminal/profiles/Default/foreground_color --type string "#C504C57CB5BD"
-gconftool-2 --set /apps/gnome-terminal/profiles/Default/background_color --type string "#19BB19BB19BB"
-gconftool-2 --set /apps/gnome-terminal/profiles/Default/bold_color --type string "#C504C57CB5BD"
-gconftool-2 --set /apps/gnome-terminal/profiles/Default/palette --type string "#19BB19BB19BB:#F4F200005F73:#983FE11323D9:#FB1E849E198C:#9D5B655FFFAE:#F4F200005F73:#581BD1DBEBAB:#C504C57CB5BD:#62085E9D4BE8:#F4F200005F73:#983FE11323D9:#E0A1D61A61AC:#9D5B655FFFAE:#F4F200005F73:#581BD1DBEBAB:#F721F729EF99"
+fg_color=#C504C57CB5BD
+bg_color=#19BB19BB19BB
+bd_color=#C504C57CB5BD
+palette=#19BB19BB19BB:#F4F200005F73:#983FE11323D9:#FB1E849E198C:#9D5B655FFFAE:#F4F200005F73:#581BD1DBEBAB:#C504C57CB5BD:#62085E9D4BE8:#F4F200005F73:#983FE11323D9:#E0A1D61A61AC:#9D5B655FFFAE:#F4F200005F73:#581BD1DBEBAB:#F721F729EF99
 
 [obsidian]
-gconftool-2 --set /apps/gnome-terminal/profiles/Default/foreground_color --type string "#CD53CD5BCD4F"
-gconftool-2 --set /apps/gnome-terminal/profiles/Default/background_color --type string "#27FB305832F7"
-gconftool-2 --set /apps/gnome-terminal/profiles/Default/bold_color --type string "#FFFFFFFFFFFF"
-gconftool-2 --set /apps/gnome-terminal/profiles/Default/palette --type string "#000000000000:#A68D007C0180:#0000BBBB0000:#FF67CD9D2236:#39F09BC8DBA3:#BBBB0000BBBB:#0000BBBBBBBB:#BBBBBBBBBBBB:#555555555555:#FFFF00000304:#937AC857637E:#FF75F893745E:#A149D769FFFF:#FFFF5555FFFF:#5555FFFFFFFF:#FFFFFFFFFFFF"
+fg_color=#CD53CD5BCD4F
+bg_color=#27FB305832F7
+bd_color=#FFFFFFFFFFFF
+palette=#000000000000:#A68D007C0180:#0000BBBB0000:#FF67CD9D2236:#39F09BC8DBA3:#BBBB0000BBBB:#0000BBBBBBBB:#BBBBBBBBBBBB:#555555555555:#FFFF00000304:#937AC857637E:#FF75F893745E:#A149D769FFFF:#FFFF5555FFFF:#5555FFFFFFFF:#FFFFFFFFFFFF
