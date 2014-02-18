@@ -4,6 +4,7 @@ import uuid
 import ConfigParser
 import os
 import cmd
+import sys
 
 # init paths and commands
 dconf_path = '/org/gnome/terminal/legacy/profiles:'
@@ -194,6 +195,10 @@ class Cornucopifier(cmd.Cmd):
     def do_EOF(self, line):
         """Exit on C^D"""
         return True
+
+    def do_exit(self, line):
+        """Quit at once"""
+        sys.exit(0)
 
     def postloop(self):
         """Print newline after each output"""
