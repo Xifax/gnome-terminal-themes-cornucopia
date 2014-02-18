@@ -32,6 +32,42 @@ def get_profile_list():
     )
     return existing_profiles
 
+
+def wipe_all_custom_profiles():
+    """Will remove all profiles, except for Default"""
+    existing_profiles = get_profile_list()
+    removed = 0
+
+    for profile in existing_profiles:
+        visible_name = os.popen(
+            '%s %s/:%s/visible-name' %
+            (dconf_read, dconf_path, profile)
+        ).read().strip().strip("'")
+
+        # Do not touch default profile
+        if visible_name != 'Default':
+            remove_profile(profile, existing_profiles)
+            removed += 1
+
+    return removed
+
+
+def remove_profile(profile, existing_profiles):
+    """Remove profile and update profile list"""
+    os.system(
+        '%s "%s/:%s/"' %
+        (dconf_reset, dconf_path, profile)
+    )
+
+    # update profile list
+    existing_profiles.remove(profile)
+    profiles = "','".join(existing_profiles)
+    os.system(
+        "%s %s/list \"['%s']\"" %
+        (dconf_write, dconf_path, profiles)
+    )
+
+
 def remove_profiles(theme_name):
     """Remove profiles based on visible name"""
     existing_profiles = get_profile_list()
@@ -44,19 +80,8 @@ def remove_profiles(theme_name):
         ).read().strip().strip("'")
         # remove profile, if name matches
         if visible_name == theme_name:
+            remove_profile(profile, existing_profiles)
             removed += 1
-            os.system(
-                '%s "%s/:%s/"' %
-                (dconf_reset, dconf_path, profile)
-            )
-
-            # update profile list
-            existing_profiles.remove(profile)
-            profiles = "','".join(existing_profiles)
-            os.system(
-                "%s %s/list \"['%s']\"" %
-                (dconf_write, dconf_path, profiles)
-            )
 
     return removed
 
@@ -161,12 +186,19 @@ class Cornucopifier(cmd.Cmd):
         total = remove_profiles(theme)
         print 'Total themes removed: %d' % total
 
+    def do_wipe(self, line):
+        """Wipe all custom profiles (Default profile will remain)"""
+        total = wipe_all_custom_profiles()
+        print 'Total profiles purged: %d' % total
+
     def do_EOF(self, line):
-        """Exit"""
+        """Exit on C^D"""
         return True
 
     def postloop(self):
+        """Print newline after each output"""
         print
+
 
 if __name__ == '__main__':
     Cornucopifier().cmdloop()
