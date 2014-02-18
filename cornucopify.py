@@ -3,6 +3,7 @@
 import uuid
 import ConfigParser
 import os
+import cmd
 
 # init paths and commands
 dconf_path = '/org/gnome/terminal/legacy/profiles:'
@@ -35,6 +36,7 @@ def remove_profiles(theme_name):
     """Remove profiles based on visible name"""
     existing_profiles = get_profile_list()
 
+    removed = 0
     for profile in existing_profiles:
         visible_name = os.popen(
             '%s %s/:%s/visible-name' %
@@ -42,6 +44,7 @@ def remove_profiles(theme_name):
         ).read().strip().strip("'")
         # remove profile, if name matches
         if visible_name == theme_name:
+            removed += 1
             os.system(
                 '%s "%s/:%s/"' %
                 (dconf_reset, dconf_path, profile)
@@ -54,6 +57,8 @@ def remove_profiles(theme_name):
                 "%s %s/list \"['%s']\"" %
                 (dconf_write, dconf_path, profiles)
             )
+
+    return removed
 
 
 def create_profile(theme_name):
@@ -140,8 +145,28 @@ def write_themes(themes):
     for theme_name, colors in themes.iteritems():
         write_theme(theme_name, colors)
 
+    return themes
 
-# TODO: include function batch remove profiles by name (not by id)
+
+class Cornucopifier(cmd.Cmd):
+    """Initialize or remove gnome profiles"""
+
+    def do_write(self, line):
+        """Write all themes from ini to gnome profile"""
+        themes = write_themes(get_themes())
+        print 'Total new themes: %d' % len(themes)
+
+    def do_remove(self, theme):
+        """Remove all profiles with the name [theme]"""
+        total = remove_profiles(theme)
+        print 'Total themes removed: %d' % total
+
+    def do_EOF(self, line):
+        """Exit"""
+        return True
+
+    def postloop(self):
+        print
+
 if __name__ == '__main__':
-    #write_themes(get_themes())
-    remove_profiles('monokai')
+    Cornucopifier().cmdloop()
