@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 #encoding: utf-8
 import uuid
 import ConfigParser
@@ -8,15 +9,11 @@ dconf_path = '/org/gnome/terminal/legacy/profiles:'
 dconf = os.popen('which dconf').read().strip()
 dconf_write = dconf + ' write'
 dconf_list = dconf + ' list'
+dconf_read = dconf + ' read'
+dconf_reset = dconf + ' reset -f '
 
-def create_profile(theme_name):
-    """Create new profile and update profile list"""
-    profile_id = str(uuid.uuid4())
-    profile_dir = dconf_path + '/:' + profile_id
-
-    # create new profile
-    os.system("%s %s/default \"'%s'\"" % (dconf_write, dconf_path, profile_id))
-
+def get_profile_list():
+    """Get existing profiles"""
     # update profile list
     existing_profiles = os.popen(
         '%s /org/gnome/terminal/legacy/profiles:/' % dconf_list
@@ -32,6 +29,43 @@ def create_profile(theme_name):
         lambda profile: len(profile) == 36,
         existing_profiles
     )
+    return existing_profiles
+
+def remove_profiles(theme_name):
+    """Remove profiles based on visible name"""
+    existing_profiles = get_profile_list()
+
+    for profile in existing_profiles:
+        visible_name = os.popen(
+            '%s %s/:%s/visible-name' %
+            (dconf_read, dconf_path, profile)
+        ).read().strip().strip("'")
+        # remove profile, if name matches
+        if visible_name == theme_name:
+            os.system(
+                '%s "%s/:%s/"' %
+                (dconf_reset, dconf_path, profile)
+            )
+
+            # update profile list
+            existing_profiles.remove(profile)
+            profiles = "','".join(existing_profiles)
+            os.system(
+                "%s %s/list \"['%s']\"" %
+                (dconf_write, dconf_path, profiles)
+            )
+
+
+def create_profile(theme_name):
+    """Create new profile and update profile list"""
+    profile_id = str(uuid.uuid4())
+    profile_dir = dconf_path + '/:' + profile_id
+
+    # create new profile
+    os.system("%s %s/default \"'%s'\"" % (dconf_write, dconf_path, profile_id))
+
+    # update profile list
+    existing_profiles = get_profile_list()
     existing_profiles.append(profile_id)
 
     profiles = "','".join(existing_profiles)
@@ -109,4 +143,5 @@ def write_themes(themes):
 
 # TODO: include function batch remove profiles by name (not by id)
 if __name__ == '__main__':
-    write_themes(get_themes())
+    #write_themes(get_themes())
+    remove_profiles('monokai')
